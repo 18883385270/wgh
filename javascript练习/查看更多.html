@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<style>
+		ul{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ul>
+			<li class="mui-table-view-cell clearfix borderbop10 Cause">
+				 	<strong>具体内容</strong>
+				 	<div class="content">集团公司、地产客服部、物业公司:</div>
+				 	<div id="text" class="content" style="text-indent: 20px;">2018年据进行修改期总包本大上报内控价"文包本大上报内控价"文件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"件中的包本大上报内控价"文件中的包本大上报内控价"文件中的包本大上报内控价"文件中的包本大上报内控价"文件中的包本大上报内控价"文件中的</div>
+				    <span id="Details" class="DepartureColo" style="text-align: right; display: block;">查看详情</span>
+				 </li>
+		</ul>
+	</div>
+		<script src="js/mui.min.js"></script>	
+	
+	<script>
+
+		var Text=document.getElementById('text').innerText;
+			var Details=document.getElementById('Details');
+			if(Text.length>60){
+			 document.getElementById('text').innerText=Text.substring(0,60)+"...";
+			 Details.style.display="block";
+			}
+			 Details.addEventListener('tap',function(){
+		       if(Details.innerText=='查看详情'){
+		          document.getElementById('Details').innerText='收起';
+		       	  document.getElementById('text').innerText=Text;
+		       }else{
+		       	  document.getElementById('Details').innerText='查看详情';
+		       	  document.getElementById('text').innerText=Text.substring(0,60)+"...";
+		       }
+			 })
+	</script>
+</body>
+</html>

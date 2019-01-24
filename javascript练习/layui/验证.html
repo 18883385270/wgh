@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="http://res.layui.com/lay/lib/layer/src/layer.js"></script> 
+<script type="text/javascript" src="http://lib.h-ui.net/Validform/5.3.2/Validform.min.js"></script> 
+	<title>Document</title>
+</head>
+<body>
+	<form action="post.php" method="post" name="form" class="form form-horizontal" id="form-Validform"> 
+  <div class="row cl"> 
+   <label class="form-label col-3"><span class="c-red">*</span>用户昵称：</label> 
+   <div class="formControls col-8"> 
+    <input type="text" class="input-text" value="" placeholder="可使用3-16位中英文字符" id="uname" name="uname" datatype="*2-16" alertmsg="用户昵称不能为空"> 
+   </div> 
+  </div> 
+  <div class="row cl"> 
+   <label class="form-label col-3"><span class="c-red">*</span>用户密码：</label> 
+   <div class="formControls col-8"> 
+    <input type="text" class="input-text" value="" placeholder="5-20位,范围[0-9a-zA-Z_@!.-]" id="pwd" name="pwd" datatype="/\w{5,20}/i" alertmsg="用户密码不能为空"> 
+   </div> 
+  </div> 
+   <div class="row cl"> 
+     <label class="form-label col-3"><span class="c-red">*</span>Email：</label> 
+     <div class="formControls col-8"> 
+      <input type="text" class="input-text" value="" placeholder="****@***.***" id="email" name="email" datatype="e" alertmsg="Email不能为空"> 
+     </div> 
+   </div> 
+   <div class="row cl"> 
+     <label class="form-label col-3"></label> 
+     <div class="formControls col-8"> 
+      <a href="javascript:;" id="safecodes" style="color:red"><?php echo $safecode; ?></a> 
+     </div> 
+   </div> 
+  </div> 
+  <div class="row cl" style="text-align:center"> 
+    <input class="btn btn-primary radius" type="submit" value="  提交  "> 
+  </div> 
+  </form> 
+  <script type="text/javascript"> 
+$(function(){ 
+  $("#form-Validform").Validform({ 
+    tiptype:4, 
+    ajaxPost:true, 
+    callback:function(data){ 
+      if(data.status==1){ 
+        layer.msg(data.info, {icon: data.status,time: 1000}, function(){ 
+          location.reload();//刷新页面 
+          });  
+      } 
+      else{ 
+        layer.msg(data.info, {icon: data.status,time: 3000}); 
+      } 
+    } 
+  }); 
+  $('#safecodes').click( function () { 
+    $('#safecode').val($('#safecodes').text()); 
+  }); 
+}); 
+</script> 
+</body>
+</html>

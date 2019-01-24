@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/borain-timeChoice.css">
+		<link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+		<!--<script src="js/jquery-1.10.2.js"></script>-->
+		<script src="js/jquery-2.1.1.min.js"></script>
+		<script src="js/borain-timeChoice.js"></script>
+		<style>
+			.content {
+				width: 100%;
+				height: 100%;
+			}
+			
+			form {
+				display: block;
+				margin: 30px 20px;
+			}
+			
+			input {
+				padding: 5px;
+				margin: 10px 0;
+			}
+		</style>
+	</head>
+
+	<body>
+	
+			
+			<input class="start-two" type="text" value="" /></br>
+			<input class="start-two1" type="text" value="" /></br>
+			<input class="start-two2" type="text" value="" /></br>
+			<input class="start-two3" type="text" value="" /></br>
+			<input class="start-two4" type="text" value="" /></br>
+			<input class="start-two5" type="text" value="" /></br>
+			
+		
+	</body>
+	<script>
+		onLoadTimeChoiceDemo();
+		
+		borainTimeChoice({
+			start: ".start",
+			end: ".end",
+			level: "YM",
+			less: true
+		});
+
+		borainTimeChoice({
+			start: ".start-two",
+			end: "",
+			level: "H",
+			less: false
+		});
+		borainTimeChoice({
+			start: ".start-two1",
+			end: "",
+			level: "H",
+			less: false
+		});
+		borainTimeChoice({
+			start: ".start-two2",
+			end: "",
+			level: "H",
+			less: false
+		});
+		borainTimeChoice({
+			start: ".start-two3",
+			end: "",
+			level: "H",
+			less: false
+		});
+		borainTimeChoice({
+			start: ".start-two4",
+			end: "",
+			level: "H",
+			less: false
+		});
+		borainTimeChoice({
+			start: ".start-two5",
+			end: "",
+			level: "H",
+			less: false
+		});
+	</script>
+
+</html>

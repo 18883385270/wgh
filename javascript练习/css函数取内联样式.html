@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="div1" style="width: 800px;height: 150px;background: yellow;"></div>
+		<script>
+			/*
+			 * css(div1,'width')//获取样式
+			 * css(div1,'background','red')//设置样式
+			 */
+			function css(obj,name,value){
+				if(arguments.length==2){
+					return obj.style[name];
+				}else{
+					obj.style[name]=value;
+				}
+			}
+			window.onload=function(){
+				var div1=document.getElementById('div1');
+				//alert(css(div1,'width'));//获取样式
+				css(div1,'background','red');//设置样式
+			}
+		</script>
+	</body>
+</html>

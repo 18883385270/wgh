@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			/*方法一
+			 *最简单数组去重法方法一
+			 */
+				function uniq1(array){
+				    var temp = []; //一个新的临时数组
+				    for(var i = 0; i < array.length; i++){
+				        if(temp.indexOf(array[i]) == -1){
+				            temp.push(array[i]);
+				        }
+				    }
+				    return temp;
+				}
+				var aa1 = [5,8,6,7,5,8,9,4,2,6,8,5,9,4,1,2,3,1,1,2,5,8,8];
+				console.log("方法一:indexOf去重"+uniq1(aa1));
+				
+				/*方法二
+				* 速度最快， 占空间最多（空间换时间）
+				* 该方法执行的速度比其他任何方法都快， 就是占用的内存大一些。
+				* 现思路：新建一js对象以及新数组，遍历传入数组时，判断值是否为js对象的键，
+				* 不是的话给对象新增该键并放入新数组。
+				* 注意点：判断是否为js对象键时，会自动对传入的键执行“toString()”，
+				* 不同的键可能会被误认为一样，例如n[val]-- n[1]、n["1"]；
+				* 解决上述问题还是得调用“indexOf”。*/
+				function uniq2(array){
+				    var temp = {}, r = [], len = array.length, val, type;
+				    for (var i = 0; i < len; i++) {
+				        val = array[i];
+				        type = typeof val;
+				        if (!temp[val]) {
+				            temp[val] = [type];
+				            r.push(val);
+				        } else if (temp[val].indexOf(type) < 0) {
+				            temp[val].push(type);
+				            r.push(val);
+				        }
+				    }
+				    return r;
+				}
+				
+				var aa2 = [1,2,3,4,5,6,7,8,9,9,8,7,6,5,4,3,2,1,'rr','dd','dd','rr','bb'];
+				console.log("方法二:空间换时间去重"+uniq2(aa2));
+				
+				
+				
+				/*方法三
+				* 给传入数组排序，排序后相同值相邻，
+				* 然后遍历时,新数组只加入不与前一值重复的值。
+				* 会打乱原来数组的顺序
+				* */
+				function uniq3(array){
+				    array.sort();
+				    var temp=[array[0]];
+				    for(var i = 1; i < array.length; i++){
+				        if( array[i] !== temp[temp.length-1]){
+				            temp.push(array[i]);
+				        }
+				    }
+				    return temp;
+				}
+				var aa3 = ["sd",1,2,"sd",4,9,"a","a",,"sd",2,3,5,6,5];
+				console.log("方法三:排序后相邻去重"+uniq3(aa3));
+				
+				
+				
+				
+
+				/*方法四
+				 * 思路：获取没重复的最右一值放入新数组
+				* 推荐的方法四
+				*
+				* 方法的实现代码相当酷炫，
+				* 实现思路：获取没重复的最右一值放入新数组。
+				* （检测到有重复值时终止当前循环同时进入顶层循环的下一轮判断）*/
+				function uniq4(array){
+				    var temp = [];
+				    var index = [];
+				    var l = array.length;
+				    for(var i = 0; i < l; i++) {
+				        for(var j = i + 1; j < l; j++){
+				            if (array[i] === array[j]){
+				                i++;
+				                j = i;
+				            }
+				        }
+				        temp.push(array[i]);
+				        index.push(i);
+				    }
+				  //  console.log(index);
+				    return temp;
+				}
+				
+				var aa4 = [1,2,3,2,2,5,3,6,5,8,7,2,3,4,5,7,4,5,6,6,4,4];
+				console.log('方法四:优化遍历数组法'+uniq4(aa4));
+				
+				
+				//方法五：Set去重法
+				var bb=[42, 'foo', 42, 'foo', true, true,52,66,99,20,15];
+				const add = arr => [...new Set(arr)];
+				console.log("方法五：Set去重:"+add(bb)); 
+				
+				
+			//去重_带排序方法六	
+				Array.prototype.unique4 = function(){
+			     //创建结果数组，值为调用unique4()方法的数组的第一个元素
+			     var result = [this[0]];
+			     //遍历 调用unique4方法的数组
+			     for(var i = 1; i < this.length; i++){
+			          //声明一个变量 repeat，判断元素是不是重复
+			          var repeat = false;
+			          //遍历结果数组 result
+			          for(var j = 0; j < result.length; j++){
+			            //如果结果数组result中的一个元素，等于，调用unique4()方法的数组的其中一个元素,repeat值为true，跳出循环
+			            //也就是结果数组result中的这个元素和调用unique4()方法的数组中的元素重复了
+			           if(this[i] === result[j]){
+			            repeat = true;
+			            break;
+			           }
+			          }
+			          //如果结果数组result中的一个元素，不等于，调用unique4()方法的数组的其中一个元素,repeat值为false，把元素添加到结果数组
+			          //也就是结果数组result中的这个元素和调用unique4()方法的数组中的元素不重复
+			          if(!repeat){
+			           result.push(this[i]);
+			          }
+			     }
+			//   返回结果数组result
+			     return result;
+			}
+			var array = [1,2,3,4,4,1,1,2,1,1,1];
+			console.log("方法六:去重带排序"+array.unique4()); 
+		</script>
+	</body>
+</html>

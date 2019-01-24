@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>计算天数</title>
+	</head>
+
+	<body>
+		<script>
+			var start="2015-08-01";//开始日期
+			var starts="15:00:00";//开始日期小时  分  秒
+			var end="2015-08-02";//结束日期
+			var ends="10:00:00";//结束日期小时  分  秒
+			var oDate1 = new Date(start+" "+starts);
+			var oDate2 = new Date(end+" "+ends);
+			var nTime = oDate2.getTime() - oDate1.getTime();
+			console.log(start+" "+starts+"和"+end+" "+ends+"相隔"+nTime/3600000+"小时");
+			console.log(start+" "+starts+"和"+end+" "+ends+"相隔"+nTime/3600000/24+"天");
+		</script>
+		
+	</body>
+
+</html> 

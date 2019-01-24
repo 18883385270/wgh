@@ -1,0 +1,353 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+		<title>多彩炫酷响应式动态波浪分割线js效果</title>
+		<style>
+			*,
+			*:before,
+			*:after {
+				box-sizing: border-box;
+			}
+			
+			html {
+				font-family: "Microsoft Yahei", sans-serif;
+				color: #333;
+				font-size: 20px;
+				line-height: 1.5;
+				font-weight: 300;
+			}
+			
+			body {
+				margin: 0;
+				padding: 0;
+				background: #fff;
+			}
+			
+			.header {
+				background-color: #215;
+				background-image: linear-gradient(to bottom, rgba(119, 17, 85, 0.5), transparent);
+				mmin-height: 200px;
+				padding: 2rem;
+				color: #fff;
+				text-align: center;
+			}
+			
+			.content {
+			    padding: .5rem;
+    margin: 0 auto;
+    max-width: 900px;
+    text-align: justify;
+			}
+			
+			.canvas-wrap {
+				max-width: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			
+			canvas {
+				display: block;
+			}
+			
+			#tab {
+
+
+				/*background:-webkit-gradient(linear,center top,center bottom,from(blue), to(white));*/
+				background: -webkit-linear-gradient(top, #007fff, #84bff9);
+				/*css3设置渐变*/
+				margin-bottom: 35px;
+			    box-shadow: 0px 0px 26px #ec393c;
+			    border-radius: 15px;
+			}
+			#tab span{
+				font-family:"Microsoft Yahei";
+				font-weight: bold;
+			}
+			#aTime {
+				color: #fff;
+			
+			}
+			
+			#Tradion {
+				width: 100px;
+				height: 100px;
+				border: 2px solid #fff;
+				border-radius: 100px;
+				float: left;
+				margin: 50px 50px;
+				display: none;
+				
+			}
+			
+			#hours {
+				width: 30px;
+				height: 2px;
+				margin: 50px 50px;
+				background: #fff;
+				transform-origin: left bottom;
+			}
+			
+			#minutes {
+				width: 38px;
+				height: 2px;
+				background: #fff;
+				margin: -50px 50px;
+				transform-origin: left bottom;
+				transform: rotate(0deg);
+			}
+			
+			#seconds {
+				width: 45px;
+				height: 1px;
+				background: #fff;
+				margin: 50px 50px;
+				transform-origin: left bottom;
+				transform: rotate(0deg);
+			}
+			
+			.tran {
+				transform: rotate(-90deg);
+				/*这里测试了一下旋转角*/
+			}
+			
+			#dian {
+				width: 6px;
+				height: 6px;
+				border-radius: 6px;
+				background: #fff;
+				margin: -55px 46px;
+			}
+			
+			#aDate,
+			#week {
+				color: #fff;
+				padding-top: 50px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header">
+			<!--日期时间-->
+			<div id="tab">
+				<div id="Tradion">
+					<div id="hours" class="tran"></div>
+					<div id="minutes" class="tran"></div>
+					<div id="seconds" class="tran"></div>
+					<div id="dian"></div>
+				</div>
+				<span id="week"></span>
+				<span id="aDate"></span>
+				<span id="aTime"></span>
+			</div>
+		</div>
+		<!--波浪分割线-->
+		<div class="canvas-wrap">
+			<canvas id="canvas"></canvas>
+		</div>
+		<div class="content">
+			<p>　多年以来，一直致力于清诗、巴蜀文化、方志族谱和乡邦文献的整理与研究。出版专著50余部，发表论文、诗词、文史作品300余篇，共计800余万言。专著《张问陶年谱》被《日报》评为“一部学术品格很高的好书”；论文《洗百年奇冤，还高鹗清白——高鹗非“汉军高氏”之发现》解决了红学中一大悬案，已载入《红学通史》。共参加国家社会科学基金项目1项、四川省社科规划项目3项，十余次获得省、市哲学社会科学优秀。其研究在学术界赞誉有加，专著发行至欧美、日本、韩国和台港澳等地，产生了很大影响。 　　昨夜西风凋碧树，独上高楼，望尽天涯 　　1964年8月，蓬溪县文井镇百恒村，一个取名胡传淮的男孩呱呱坠地。 　　上小学时，正遇“”。他常听老农忆苦思甜，向他们讨教村史社情的文字记载。“哪有什么文字记载哟，全部是凭脑子记、口头传下来的。”胡传淮就想，将来我有文化了，一定要把农民们讲的这些东西记下来。 　　读中学时，见历史书后总是有“乡土教材，各地自编”的附言。胡传淮就问老师：“我们有自编的乡土教材吗？”老师说：“我们这里还没有。”胡传淮就暗暗发誓：将来一定要编出自己家乡的乡土教材！ 　　在读大学的岁月里，他对中国古典文学情有独钟，潜心攻读历代诗词小说，准备毕业后从事中国古代文学研究。 　　人生有了目标，便有了寄托。然而怎样确定自己的研究方向呢？四川教育学院中文系教授、著名国学研究家龙晦先生对他说：“四川的学者应该把研究的目光瞄准在本土历史文化上，就如同土特产，人有，具有特色。”又指出：“要研究清诗，先选择一个地域、一个小群体、一个家族或者只是一个人，仔细读去，不要被《清诗纪事》中那些评价，这样庶几可得清诗之真。” 　　这些话使胡传淮豁然开朗。他想，许多外地学者都重视巴蜀文化，而生于斯、长于斯的他又岂能视而不见呢？于是，胡传淮把研究目标定位在明清文学，瞄准巴蜀文化，最后聚焦到家乡遂宁的宋代学者王灼、明代女散曲家黄峨、清代著名诗人张问陶三人身上。 　　衣带渐宽终，为伊消得人憔悴 　　为了理想，胡传淮从此了一条荆棘丛生的艰苦道。 　　1993年，胡传淮从岗位调入蓬溪县政协从事文史研究工作后，他开始地博览群书，并开始用手中的笔为蓬溪编纂了一辑又一辑可资历史借鉴的地方文史资料。由于全情投入，他每年征编出版的一辑《蓬溪文史资料》质量上乘，使蓬溪政协的文史工作走在了遂宁市的前列，在四川省文史界也产生了较大影响。 　　那年，他刚29岁。 　　胡传淮喜欢读书，也喜欢买书，“满街繁华皆过眼，独钟书市久流连。”并不富裕的他了不少个人娱乐和生活享受，把节省下来的钱全部用于了买书。几十年来，从不间断，如今他家中的万册藏书均为蜀中地方文献，有好友形容其陋室“好比用砖砌成的堡垒，足以惊倒邻墙。” 　　除了买书，胡传淮还有一个爱好：抄书。由于其主要从事清诗、巴蜀文化和乡邦文献的整理与研究，所以许多地方文献资料都是宋元明清刻本，属于珍贵文物无法购买。保存者怕影响古籍纸张又不同意其复印，于是，只能靠手抄。据不完全统计，近十几年来，胡传淮已古籍10余部、200多万字。本《遂宁县志》、清光绪本《潼川府志》、本《南充县志》、清刻本《吕半隐诗集》、本《遂宁张氏族谱》……胡传淮的笔记本多达100余个，写坏钢笔10余支。“为了抄书，我忘了白天黑夜。抄得头昏了，就用冷水洗脸，后再抄。” 　　“衣带渐宽终，为伊消得人憔悴”。 胡传淮的与专注，让他在收获了50种著作、共800万字的丰硕的同时，也成为了蓬溪县政协常委、文史学习委员会主任、蓬山诗词学会常务副会长、张船山研究会学术顾问、四川省楹联学会理事；被蓬溪县委、县命名为蓬溪县第四批拔尖人才。 　　目标明确，意志坚定的胡传淮，从不打麻将上舞厅，无论节日或假期，他全把精力投入到了读书、研究和上。他说：“一个人的时间和精力都是有限的。孤独是最好的，寂寞是最真实的快乐。” 　　众里寻他千百度，蓦然回首，那人却在，灯火阑珊处</p>
+		</div>
+
+		<script>
+			(function() {
+				"use strict";
+
+				var cvs, ctx;
+				//var nodes = 5;
+				var waves = [];
+				var waveHeight = 30;
+				var colours = ["#f00", "#0f0", "#00f"]
+
+				function init() {
+					cvs = document.getElementById("canvas");
+					ctx = cvs.getContext("2d");
+					resizeCanvas(cvs);
+
+					for(var i = 0; i < 3; i++) {
+						var temp = new wave(colours[i], 1, 5);
+					}
+
+					setInterval(update, 16);
+
+				}
+
+				function randomColour() {
+					// body...
+					var h = Math.round(Math.random() * 360);
+					return "hsl(" + h + ",100%,50%)";
+				}
+
+				function update(array) {
+					// body...
+					//ctx.clearRect(0, 0, cvs.width, cvs.height);
+					var fill = window.getComputedStyle(document.querySelector(".header"), null).getPropertyValue("background-color");
+					ctx.fillStyle = fill;
+					ctx.globalCompositeOperation = "source-over";
+					ctx.fillRect(0, 0, cvs.width, cvs.height);
+					ctx.globalCompositeOperation = "screen";
+					for(var i = 0; i < waves.length; i++) {
+						for(var j = 0; j < waves[i].nodes.length; j++) {
+							bounce(waves[i].nodes[j]);
+						}
+						drawWave(waves[i]);
+						//drawLine(waves[i].nodes);
+						//drawNodes(waves[i].nodes);
+					}
+					ctx.globalCompositeOperation = "hue";
+					ctx.fillStyle = fill;
+					//ctx.fillRect(0,0,cvs.width,cvs.height);
+				}
+
+				function wave(colour, lambda, nodes) {
+					// body...
+					this.colour = colour;
+					this.lambda = lambda;
+					this.nodes = [];
+					var tick = 1;
+					for(var i = 0; i <= nodes + 2; i++) {
+						var temp = [(i - 1) * cvs.width / nodes, 0, Math.random() * 200, .3]; //this.speed*plusOrMinus
+						this.nodes.push(temp);
+						console.log(temp);
+					}
+					console.log(this.nodes);
+					waves.push(this);
+				}
+
+				function bounce(node) {
+					node[1] = waveHeight / 2 * Math.sin(node[2] / 20) + cvs.height / 2;
+					node[2] = node[2] + node[3];
+
+				}
+
+				function drawWave(obj) {
+					var diff = function(a, b) {
+						return(b - a) / 2 + a;
+					}
+					ctx.fillStyle = obj.colour;
+					ctx.beginPath();
+					ctx.moveTo(0, cvs.height);
+					ctx.lineTo(obj.nodes[0][0], obj.nodes[0][1]);
+					for(var i = 0; i < obj.nodes.length; i++) {
+						if(obj.nodes[i + 1]) {
+							ctx.quadraticCurveTo(
+								obj.nodes[i][0], obj.nodes[i][1],
+								diff(obj.nodes[i][0], obj.nodes[i + 1][0]), diff(obj.nodes[i][1], obj.nodes[i + 1][1])
+							);
+						} else {
+							ctx.lineTo(obj.nodes[i][0], obj.nodes[i][1]);
+							ctx.lineTo(cvs.width, cvs.height);
+						}
+
+					}
+					ctx.closePath();
+					ctx.fill();
+				}
+
+				function drawNodes(array) {
+					ctx.strokeStyle = "#888";
+					for(var i = 0; i < array.length; i++) {
+						ctx.beginPath();
+						ctx.arc(array[i][0], array[i][1], 4, 0, 2 * Math.PI);
+						ctx.closePath();
+						ctx.stroke();
+					}
+
+				}
+
+				function drawLine(array) {
+					ctx.strokeStyle = "#888";
+					for(var i = 0; i < array.length; i++) {
+						if(array[i + 1]) {
+							ctx.lineTo(array[i + 1][0], array[i + 1][1]);
+						}
+					}
+					ctx.stroke();
+				}
+
+				function resizeCanvas(canvas, width, height) {
+					if(width && height) {
+						canvas.width = width;
+						canvas.height = height;
+					} else {
+						if(window.innerHeight > 1920) {
+							canvas.width = window.innerWidth;
+						} else {
+							canvas.width = 1920;
+						}
+
+						canvas.height = waveHeight;
+					}
+
+				}
+
+				document.addEventListener("DOMContentLoaded", init, false);
+			})();
+
+			//时间
+			window.onload = function() {
+				function addzero(num) {
+					if(num >= 10) {
+						return "" + num;
+					} else {
+						return "0" + num;
+					}
+				}
+
+				function times() {
+					var date = new Date();
+					var aTime = document.getElementById('aTime');
+					var str = addzero(date.getHours()) + ":" + addzero(date.getMinutes()) + ":" + addzero(date.getSeconds());
+					aTime.innerHTML = str;
+				}
+				setInterval(times, 1000);
+				times();
+
+				function Ttranform() {
+					var date = new Date();
+					var hours = document.getElementById('hours');
+					var minutes = document.getElementById('minutes');
+					var seconds = document.getElementById('seconds');
+					var num = date.getHours();
+					var num2 = date.getMinutes();
+					var num3 = date.getSeconds();
+					hours.style.transform = "rotate(" + (num * 30 - 90) + "deg)";
+					minutes.style.transform = "rotate(" + (num2 * 6 - 90) + "deg)";
+					seconds.style.transform = "rotate(" + (num3 * 6 - 90) + "deg)";
+
+				}
+				setInterval(Ttranform, 1000);
+				Ttranform();
+			}
+		</script>
+		<script type="text/javascript">
+			function Adate() {
+				var date = new Date();
+				var aDate = document.getElementById("aDate");
+				var week = document.getElementById('week');
+				var weekList = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+				var yue = date.getMonth() + 1;
+				var day = date.getDate();
+				if(yue < 10) {
+					yue = "0" + (date.getMonth() + 1);
+				} else {
+					yue = date.getMonth() + 1;
+				};
+				if(day < 10) {
+					day = "0" + (date.getDate());
+				} else {
+					day = date.getDate();
+				};
+				var str = date.getFullYear() + "-" + yue + "-" + day;
+				aDate.innerHTML = str;
+				var westr = weekList[date.getDay()];
+				week.innerHTML = westr;
+			}
+			Adate();
+		</script>
+	</body>
+
+</html>

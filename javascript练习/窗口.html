@@ -1,0 +1,37 @@
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+<TITLE>按钮特效篇--窗口按钮</TITLE>
+</HEAD>
+
+<BODY bgcolor="#fef4d2" >
+
+<br><br>
+<center>
+<h2>按钮特效篇--窗口按钮</h2>
+<hr width=300>
+<br><br>
+
+<!-- 案例代码开始 -->
+
+<object id="min" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+  <param name="Command" value="Minimize">
+</object> 
+<!-- [Step1]: 这里可以更改按钮的大小 -->
+<!-- [Step2]: 在此能够设置按钮的背景颜色 -->
+<!-- [Step3]: 这里可以修改按钮的边界框 -->
+<button onClick="min.Click()" style="font-size: 10pt; background-color: #66FF00; border: 2 solid" onMouseOver="this.style.color='#D9E2F7'" onMouseOut="this.style.color='#000000'"><font face="webdings">0</font></button> 
+<object id="max" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+  <param name="Command" value="Maximize">
+</object> 
+<button onClick="max.Click()" style="font-size: 10pt; background-color: #6633FF; border: 2 solid" onMouseOver="this.style.color='#D9E2F7'" onMouseOut="this.style.color='#000000'"><font face="webdings">1</font></button> 
+<object id="clo" type="application/x-oleobject" classid="clsid:adb880a6-d8ff-11cf-9377-00aa003b7a11">
+   <param name="Command" value="Close">
+</object> 
+<button onClick="clo.Click()" style="font-size: 10pt; background-color: #006699; border: 2 solid" onMouseOver="this.style.color='#D9E2F7'" onMouseOut="this.style.color='#000000'"><font face="webdings">r</font></button> 
+          
+<!-- 案例代码结束 -->
+
+</BODY>
+
+</HTML>

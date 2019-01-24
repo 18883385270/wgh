@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+//			参数为固定
+			function add1(a,b,c,d){
+				return a+b+c+d;
+			}
+			alert('a,b,c,d的和为：'+add1(15,58,15,32))
+			
+//			可变参，不定参：anguments求和
+			function add(){
+				var result=0;
+				for(var i=0;i<arguments.length;i++){
+					result += arguments[i];
+				}
+				return result;
+			}
+			alert(add(15,58,15,32))
+		</script>
+	</body>
+</html>

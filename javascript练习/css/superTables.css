@@ -1,0 +1,176 @@
+.sBase {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden
+}
+
+.sHeader {
+	position: absolute;
+	z-index: 3;
+	background-color: #f5f5f5
+}
+
+.sHeaderInner {
+	position: relative
+}
+
+.sHeaderInner table {
+	border-spacing: 0 0!important;
+	border-collapse: collapse!important;
+	width: 1px!important;
+	table-layout: fixed!important;
+	background-color: #fff
+}
+
+.sFHeader {
+	position: absolute;
+	z-index: 4;
+	overflow: hidden
+}
+
+.sFHeader table {
+	border-spacing: 0 0!important;
+	border-collapse: collapse!important;
+	width: 1px!important;
+	table-layout: fixed!important;
+	background-color: #f5f5f5
+}
+
+.sData {
+	position: absolute;
+	z-index: 2;
+	overflow: auto;
+	background-color: #f5f5f5
+}
+
+.sData table {
+	border-spacing: 0 0!important;
+	border-collapse: collapse!important;
+	width: 1px!important;
+	table-layout: fixed!important
+}
+
+.sFData {
+	position: absolute;
+	z-index: 1;
+	background-color: #f5f5f5
+}
+
+.sFDataInner {
+	position: relative
+}
+
+.sFData table {
+	border-spacing: 0 0!important;
+	border-collapse: collapse!important;
+	width: 1px!important;
+	table-layout: fixed!important
+}
+
+.sDefault {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: Verdana, Arial, sans serif;
+	font-size: .8em
+}
+
+.sDefault th,
+.sDefault td {
+	border: 1px solid #ccc;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap
+}
+
+.sDefault th {
+	background-color: #e5e5e5;
+	border-color: #c5c5c5
+}
+
+.sDefault-Fixed {
+	background-color: #eee;
+	border-color: #c5c5c5
+}
+
+.sSky {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: Verdana, Arial, sans serif;
+	font-size: .8em
+}
+
+.sSky th,
+.sSky td {
+	border: 1px solid #9eb6ce;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap
+}
+
+.sSky th {
+	background-color: #cfdcee
+}
+
+.sSky-Fixed {
+	background-color: #e4ecf7
+}
+
+.sOrange {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: Verdana, Arial, sans serif;
+	font-size: .8em
+}
+
+.sOrange th,
+.sOrange td {
+	border: 1px solid #cebb9e;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap
+}
+
+.sOrange th {
+	background-color: #ecd8c7
+}
+
+.sOrange-Fixed {
+	background-color: #f7ede4
+}
+
+.sDark {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: Verdana, Arial, sans serif;
+	font-size: .8em;
+	color: #f5f5f5
+}
+
+.sDark th,
+.sDark td {
+	border: 1px solid #555;
+	padding: 3px 6px 3px 4px;
+	white-space: nowrap
+}
+
+.sDark th {
+	background-color: #000
+}
+
+.sDark-Fixed {
+	background-color: #222
+}
+
+.sDark-Main {
+	background-color: #333
+}
+
+.rowStyle {
+	background-color: #fff
+}
+
+.alterStyle {
+	background-color: #ddf
+}

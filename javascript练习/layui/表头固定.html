@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css" />
+		<style>
+			#MyTable {
+				width: 1060px;
+				margin: 30px auto;
+				font-family: 微软雅黑;
+				color: #000;
+				font-size: medium;
+				border-right: 1px solid #e6e6e6;
+				border-bottom: 1px solid #e6e6e6;
+			}
+
+			/*自定义行强制显示*/
+			
+			#hide_tr {
+				display: table-row!important;
+			}
+			
+			.layui-table tr {
+				height: 40px;
+			}
+			
+			.layui-table thead th {
+				font-weight: bold;
+				color: #000000;
+			}
+			
+			.layui-table tr td ,.layui-table tr th{
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			/*自定义占位,但不显示大小及内容*/
+			
+			#hide_tr * {
+				margin-top: 0;
+				margin-bottom: 0;
+				padding-top: 0;
+				padding-bottom: 0;
+				border-top: 0;
+				border-bottom: 0;
+				height: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table id="MyTable" class="layui-table" cellspacing="0 " cellpadding="0 ">
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>语文</th>
+					<th>数学</th>
+					<th>英语</th>
+					<th>姓名</th>
+					<th>语文</th>
+					<th>数学</th>
+					<th>英语</th>
+					<th>姓名</th>
+					<th>语文</th>
+					<th>数学</th>
+					<th>英语</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+		
+		<div id="page" style="width: 1060px;margin:auto;"></div>
+		
+	</body>
+	<script src='http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js'></script>
+	<script src="layui/layui.js"></script>
+	<script>
+		layui.use(['laypage', 'layer'], function() {
+			var laypage = layui.laypage,
+				layer = layui.layer;
+			laypage.render({
+				elem: 'page',
+				count: 100,
+				layout: [ 'prev', 'page', 'next', 'limit','count', 'refresh', 'skip'],
+				jump: function(obj) {
+					console.log(obj)
+				}
+			})
+		});
+	</script>
+	<script>
+		function fix_table($obj) {
+			if(!$obj || $obj.length <= 0 || ($('html').height() - $(window).height()) < 0) return false;
+			$obj.show();
+			//最大高度为不包含滚动条的高度
+			var height = $obj.find('tbody').height() - ($('html').height() - $(window).height()) - 3;
+			//设置表格内容高度和宽度
+			$obj.find('tbody').css({
+				'max-width': $obj.width(),
+				'overflow': 'auto',
+				'max-height': height
+			});
+			//移出复制的表头并重新添加
+			$obj.find("#hide_tr ").remove();
+			//内容宽度自适应
+			$obj.find('thead tr th').css('width', 'auto');
+			// 表头复制并插入到内容
+			$obj.find('tbody tr:first').before($obj.find('thead tr').clone());
+			var _th = $obj.find('thead th');
+			//移出内容的行信息并设置跟表头一样的宽度
+			$obj.find('tbody tr:first th').each(function(i, j) {
+				$(this).html('').width($(_th[i]).innerWidth());
+			});
+			//表格第一行内容不显示仅占位
+			$obj.find('tbody tr:first').attr('id', 'hide_tr').css('display', 'table-row');
+			//显示滚动条
+			$obj.find('tbody,thead tr,tfoot tr').css('display', 'block');
+			//表格内容宽
+			_th = $obj.find('tbody th');
+			//表头th宽跟内容th宽一致
+			$obj.find('thead tr:first th').each(function(i, j) {
+				$(this).width($(_th[i]).width() + 1 + 'px');
+			});
+			//页脚th宽跟内容th宽一致
+			$obj.find('tfoot tr:first th').each(function(i, j) {
+				$(this).width($(_th[i]).width() + 1 + 'px');
+			});
+		}
+		$(function() {
+			var html = '';
+			var tr = '<tr><td>学生#index#</td><td>#1#</td><td>#2#</td><td>#3#</td><td>学生#index#</td><td>#1#</td><td>#2#</td><td>#3#</td><td>学生#index#</td><td>#1#</td><td>#2#</td><td>#3#</td></tr>';
+			for(var i = 1; i <= 40; i++) {
+				html += tr.replace("#index# ", i).replace("#1# ", 10).replace("#2# ", 20).replace("#3# ", 30);
+			}
+			$("#MyTable tbody ").html(html);
+			fix_table($("#MyTable "));
+		});
+	</script>
+
+</html>

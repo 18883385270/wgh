@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>周历</title>
+    <style type="text/css">
+      * {margin:0;padding:0;}
+      ul,li {list-style: none;}
+      body {max-width: 400px;margin-left: auto;margin-right: auto}
+      .datetime_header {text-align: center;padding-top: 20px;padding-bottom: 20px;font-size: 16px;border-bottom: 1px solid #ccc}
+      .prev_icon,
+      .next_icon {display: inline-block;vertical-align: top;width: 20px;height: 20px;}
+      .prev_icon {margin-right: 20px;background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBRjM4MjAyQTc1QkYxMUU3OEU5NUNEMTJBNTFEMzFDNSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBRjM4MjAyQjc1QkYxMUU3OEU5NUNEMTJBNTFEMzFDNSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkFGMzgyMDI4NzVCRjExRTc4RTk1Q0QxMkE1MUQzMUM1IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkFGMzgyMDI5NzVCRjExRTc4RTk1Q0QxMkE1MUQzMUM1Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+oFyXSAAAAd9JREFUeNqM1E1IFGEcx/HdJQ+Rq6dgr6V7SgWJrEviSyERZKbiqRBXhNq6qa14EDykZgXRrgaKkC4qQUYEBqEHXw7aC4l0SfSwVxWRTmWH7fvAf+DZh3lm9g8fhpln5sfzNk8wPLQfsNQ9tKPWeL6GaUyqm9+JszmNp1yCmjCDM/iDj9hBFlFcw1W8xl3M6R+HjLARLCCDapzGLXSjB7dRiMv4gdmi4YOkLXAIvRjEBRmarb7gEhKI66FO4A1pfIIBj6AlvDRG9FhC2/TAD9hDv09YPXb1hyzKUy7fMU9oSAW2okDmx1bLEnYHr1zam+XaGZLJ/oufHj2rk7D3bi/QS7WIR2oNQjK5i5awRelZoy1MK7U7Spx9uG00FmMVFajEVsC/fumLkjUagwg7IwrkV1k9sMxoPMZ5rMjqX88jMOoEquHctLxUg2/4nEeoWrSMCnwuv1ip5UW1aF+9Qtl/ES7qlHihAtPy3GsVq7TQmEv7W7mOO3PYIvPY5xO6iYtG7+Jy+sTYj/+cbfMOSfmXT2Qa3OqKcf9AvntD2JR52jxCCs+wbvbEqHIZfkrC2m0H7ENsyAGrVvcQn2TrqDqHBkTkvouwCb8TOy2n8H10yKmsl/rnRzEmJ3pO/RdgAImpc6oRs8i7AAAAAElFTkSuQmCC) no-repeat}
+      .next_icon {margin-left: 20px;background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNjRBQUZBMzc1QkYxMUU3OEY0NEFDQzI1NzVDODk5QSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNjRBQUZBNDc1QkYxMUU3OEY0NEFDQzI1NzVDODk5QSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE2NEFBRkExNzVCRjExRTc4RjQ0QUNDMjU3NUM4OTlBIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE2NEFBRkEyNzVCRjExRTc4RjQ0QUNDMjU3NUM4OTlBIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+5IgMmAAAAeVJREFUeNqM1E9IFGEYx/HdJQ9idhP2KrkHzRAKNygTBEFFiMpCOhRiIeTaqX8rHQSJ/N9JS0gEdVERLEJQDDpVoKEYEdgfEjp0Kemwp6TD+n3hN/Du286sD3wYdmfmx8wz7/uEi/t+hXzqGtpQ5/z/BtOYMD/SyZKsk4dyBF3ADIrwF0v4igxiqMdZjOMq5uybI07YAJ7jB2pRiHO4g7s4j8M4hS3MHun/PeoX2Id76MUxvZpfvUc1kkjYoV5gk04+Qo9148M8weaN7iu01Q58ie944Nywgxqs+SXyUQY5bGKe0IgJvIwC9cetSTSoZ+sBT9qi442Imr2HTz4Xv0Ij4n6hPKX5iH/MN4ioucuh4FrVcokH9NSsjqNeDz+G8tdrlKun31DinP9if5RM6GCV1rEYYedcxg6sPEDYafzEBqJw92zMC/yA5jxhZ/AOn9XzXHXR7DATOKItVhYQ9hbb6uF/xfqLqqePTWBK/7/Ice0VK6wi4A0WdHzq9fCS+tjtXFilIeAbxtMlNH2usx7/eYGLGNVevm1db/b3iYAn69R9U4RNutPmFsYwrNc8GRB0XDtoTGFtfgO2S4NgRstjFysaHKZKtbej+t1B2LN8EzulKXwT7ZrKdpk9P4QnmuhZtS/AAK1fcwgha25zAAAAAElFTkSuQmCC) no-repeat}
+      .prev_icon:active,
+      .next_icon:active,
+      #weeklyCanlendarView li a:active {opacity: .8}
+
+      #weeks_ch,#weeklyCanlendarView {overflow: hidden;} 
+      #weeks_ch {padding-top: 10px;padding-bottom: 5px;}
+      #weeks_ch li {line-height: 30px}
+      #weeks_ch li,
+      #weeklyCanlendarView li {float: left;display: inline;width: 14.28571428%;text-align: center;}
+      #weeklyCanlendarView li a {display: inline-block;width: 34px;line-height: 34px;border-radius: 100%;color: #0d87ea;text-decoration: none;border:1px solid transparent}
+      #weeklyCanlendarView li.active a {background:#0d87ea;color: #fff;} 
+	  #weeklyCanlendarView li.clickActive a {border:1px solid #0d87ea}
+    </style>
+    </head>
+  <body>
+    <div class="datetime_header">
+        <a href="javascript:;" title="上一周" class="prev_icon" id="prev_week"></a>
+        <span><b id="year_selector"></b>年<b id="month_selector"></b>月</span><span style="margin-left: 20px;display: none">第<b id="week_selector"></b>周</span>        
+        <a href="javascript:;" title="下一周" class="next_icon" id="next_week"></a>
+    </div>
+    <ul id="weeks_ch"></ul>
+    <ul id="weeklyCanlendarView"></ul>
+  </div>
+    <script type="text/javascript">     
+      /**
+         * 获取某年的某天是第几周
+         * @param {Number} y
+         * @param {Number} m
+         * @param {Number} d
+         * @returns {Number}
+       */
+      function getWeekNumber(y, m, d) {
+           /**
+           * 判断年份是否为润年
+           *
+           * @param {Number} year
+           */
+          var isLeapYear = function(year) {
+              return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
+          }
+          /**
+           * 获取某一年份的某一月份的天数
+           *
+           * @param {Number} year
+           * @param {Number} month
+           */
+          var getMonthDays = function(year, month) {
+              return [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month] || (isLeapYear(year) ? 29 : 28);
+          }
+
+          var now = new Date(y, m - 1, d),
+              year = now.getFullYear(),
+              month = now.getMonth(),
+              days = now.getDate();
+          //那一天是那一年中的第多少天
+          for (var i = 0; i < month; i++) {
+              days += getMonthDays(year, i);
+          }
+
+          //那一年第一天是星期几
+          var yearFirstDay = new Date(year, 0, 1).getDay() || 7;
+          var week = null;
+          if (yearFirstDay == 1) {
+              week = Math.ceil(days / yearFirstDay);
+          } else {
+              days -= (7 - yearFirstDay + 1);
+              week = Math.ceil(days / 7) + 1;
+          }
+          return week;
+      }
+
+      /**
+        * 周历控件
+        * 2017-08-01
+      */
+      function weeklyCalendar(options){
+          /*简化id操作*/
+          var $$ = function (id){
+            return document.getElementById(id);
+          }
+
+          var d = new Date();
+          var currDay = d.getDay(),
+			  currDate = d.getDate(),
+              currMonth = d.getMonth() + 1,
+			  currYear = d.getFullYear();
+    		  var lis = $$('weeklyCanlendarView').getElementsByTagName('li'),
+              aTags = $$('weeklyCanlendarView').getElementsByTagName('a');
+
+          /*创建星期*/
+          var creatWeek = function(){
+            var span = '';
+            var weeks_ch = ['日', '一', '二', '三', '四', '五', '六'];
+            for (var i = 0,len = weeks_ch.length; i < len; i++) {
+              span += '<li>'+weeks_ch[i]+'</li>';
+            };
+            $$('weeks_ch').innerHTML = span;
+          }();
+
+          /**
+            * 计算过去或者是未来时间
+            @param obj 返回的月份和日期  
+            @param {number} num 过去或者是未来的某天
+          */
+          var calcTime = function(num){
+              var num = num || 0,
+                  someTime = d.getTime()  + (24 * 60 *60 *1000) * num,     
+                  someYear =  new Date(someTime).getFullYear(),        
+                  someMonth = new Date(someTime).getMonth() + 1,  //未来月
+                  someDate = new Date(someTime).getDate();  //未来天
+              var obj = {
+                "year":someYear,
+                "month":someMonth,
+                "date":someDate
+              };
+              return obj;
+          }
+
+          /*创建周历*/
+          var creatWeekCalendar = function(some){
+            var a = '';
+            for (var i = some,len = some+7; i < len; i++) {
+              if (calcTime(i).month == currMonth && calcTime(i).date == currDate) {
+                a += '<li class="active"><a href="javascript:;" data-year="'+calcTime(i).year+'" title="'+calcTime(i).month+'月">'+calcTime(i).date+'</a></li>';
+              }else{
+                a += '<li><a href="javascript:;" data-year="'+calcTime(i).year+'" title="'+calcTime(i).month+'月">'+calcTime(i).date+'</a></li>';
+              }          
+            };
+            $$('weeklyCanlendarView').innerHTML = a;
+          }
+
+          /*获取当年第几周*/
+          var getMonthWeek = function(y,m,date) { 
+            var d = new Date();
+            var y = y || d.getFullYear();
+            var m = m || d.getMonth() + 1;
+            var date = date || d.getDate();
+            return getWeekNumber(y,m,date);
+          };         
+
+          /*初始化周历*/
+          var initDatetime = function(){
+              currMonth < 10 ? currMonth = "0"+currMonth : currMonth;
+			  $$('year_selector').innerHTML = currYear;
+              $$('month_selector').innerHTML = currMonth;
+              $$('week_selector').innerHTML = getMonthWeek();
+              $$('week_selector').setAttribute('week',getMonthWeek())
+              creatWeekCalendar(-currDay);
+          }()
+
+          //设置初始点击次数
+          $$('weeklyCanlendarView').setAttribute('clickedTimes',0);
+          //获取点击次数
+          var clickedTimes = $$('weeklyCanlendarView').getAttribute('clickedTimes');
+          var weekNum = $$('week_selector').getAttribute('week');
+          /*前一周和后一周方法*/
+          var changeWeek = function(clickedTimes,weekNum){ 
+            creatWeekCalendar(-currDay-(7*clickedTimes));
+            $$('weeklyCanlendarView').setAttribute('clickedTimes',clickedTimes);
+            //动态设置月
+            var clickMonth = parseInt(aTags[0].title);
+            clickMonth < 10 ? clickMonth = "0"+clickMonth : clickMonth;
+            $$('month_selector').innerHTML = clickMonth;
+            //动态设置年
+            var clickYear = aTags[0].getAttribute('data-year');
+            $$('year_selector').innerHTML = clickYear;  
+			
+			//动态设置周，这里周计算有点问题，所以周已经隐藏了，周设置属性，仅作为点击前一周和后一周计算的时候显示周视图
+			$$('week_selector').innerHTML = weekNum;
+            $$('week_selector').setAttribute('week',weekNum);
+          }
+
+          /*前一周*/          
+          $$('prev_week').onclick = function(){            
+            clickedTimes ++;
+            weekNum --;
+            changeWeek(clickedTimes,weekNum);
+          }
+
+          /*后一周*/
+          $$('next_week').onclick = function(){
+            clickedTimes --;
+            weekNum++;
+            changeWeek(clickedTimes,weekNum);
+          }
+
+          /*选择日期*/
+          $$('weeklyCanlendarView').onclick = function(e){
+              var tagName = e.target.tagName.toLowerCase();
+              if (tagName == "a") {
+        				for(var i = 0,len = lis.length;i < len;i++){
+        					if(lis[i].className.indexOf('active') == -1){
+        						lis[i].className = '';
+        					}					
+        				}
+        				e.target.parentNode.className = "clickActive";				
+                var _y = e.target.getAttribute('data-year'),
+                    _m = parseInt(e.target.title) < 10 ? "0"+parseInt(e.target.title) : parseInt(e.target.title),
+                    _d = e.target.innerHTML < 10 ? "0"+e.target.innerHTML : e.target.innerHTML,
+                     dateTime;
+                dateTime = {
+                  "year":_y,
+                  "month":_m,
+                  "date":_d
+                }
+                if(options && typeof options === "object" && options['clickDate']){
+                    options['clickDate'](dateTime)
+                }
+              }
+          }
+      }
+      
+
+      /*周历使用*/
+      weeklyCalendar({
+        //点击日期的回调，dateTime为选中的日期对象
+        clickDate:function(dateTime){
+          console.log(dateTime);
+        }
+      });      
+     </script>
+  </body>
+</html>

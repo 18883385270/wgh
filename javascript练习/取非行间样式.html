@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#div1{
+				width: 800px;
+				height: 400px;
+				background: yellow;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<script>
+			window.onload=function(){
+				var oDiv=document.getElementById('div1');
+				//alert(oDiv.style.height)//取不到非行间的width
+				
+                //currentStyle只兼容IE
+				//alert(oDiv.currentStyle.width)
+				
+				
+				//getComputedStyle(obj,false)有两个参数obj,第二个参数false,数字也可以
+				//alert(getComputedStyle(oDiv,false).width);
+				
+				
+				if(oDiv.currentStyle){
+					//只兼容IE7,8,9,10
+					alert(oDiv.currentStyle.width)
+				}else{
+					//兼容谷歌火狐  兼容I10 11
+					alert(getComputedStyle(oDiv,false).width);
+				}
+			}
+		</script>
+	</body>
+</html>

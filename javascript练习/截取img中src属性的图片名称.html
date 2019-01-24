@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>截取img中src属性的图片名称</title>
+	</head>
+	<body>
+		<div>
+			<img src="images/vue.png" id="lnkPic"/>
+		</div>
+		<script>
+			
+                //得到图片路径
+                var path = document.getElementById("lnkPic").src;
+                //从路径中截取图片名[包括后缀名]
+                var filename;
+                if(path.indexOf("/")>0)//如果包含有"/"号 从最后一个"/"号+1的位置开始截取字符串
+                {
+                    filename=path.substring(path.lastIndexOf("/")+1,path.length);
+                }
+                else
+                {
+                    filename=path;
+                }
+              alert(filename)
+               
+		</script>
+	</body>
+</html>
